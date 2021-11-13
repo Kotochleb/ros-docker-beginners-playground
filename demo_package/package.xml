@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>demo_package</name>
+  <version>0.0.0</version>
+  <description>The demo_package package</description>
+  <license>MIT</license>
+  <maintainer email="krzy.wojciecho@gmail.com">Krzysztof Wojciechowski</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

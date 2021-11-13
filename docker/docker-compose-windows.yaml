@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  ros-demo:
+    build: 
+      context: ./..
+      dockerfile: ./docker/Dockerfile
+    container_name: ros-demo
+    runtime: nvidia
+    environment:
+      - "DISPLAY=host.docker.internal:0.0"
+    volumes:
+      - type: bind
+        source: ./../demo_package
+        target: /app/ros_ws/src/demo_package
+    command: roslaunch panther_gazebo panther_rviz.launch
