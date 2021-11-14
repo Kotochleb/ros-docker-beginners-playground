@@ -32,3 +32,8 @@ rosrun demo_package follow_the_gap.py
 ```
 
 This will execute code from [this](./ros_ws/demo_package/scripts/follow_the_gap.py) file. It is a simple follow the gap controller.
+
+## Output
+
+successfully launched simulation should bring you similar windows.
+![alt gazebo](assets/gazebo.png "Gazebo")
