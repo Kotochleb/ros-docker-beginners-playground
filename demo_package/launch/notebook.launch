@@ -1,0 +1,6 @@
+<launch>
+
+    <node name="jupyter" pkg="demo_package" type="start_notebook.sh" output="screen" />
+    <include file="$(find panther_gazebo)/launch/panther_rviz.launch"></include>
+
+</launch>

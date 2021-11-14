@@ -13,4 +13,6 @@ services:
       - type: bind
         source: ./../demo_package
         target: /app/ros_ws/src/demo_package
-    command: roslaunch panther_gazebo panther_rviz.launch
+    ports:
+      - "8888:8888"
+    # command: roslaunch panther_gazebo panther_rviz.launch
