@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Publish robot_description topic for robot visualization -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find panther_description)/urdf/panther.urdf.xacro'"/>
+  <!-- Start Rviz with custom Panther congfig -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find demo_package)/rviz/package_demo.rviz" required="true" output="screen"/>
+
+  <!-- Start Gazebo with willowgarage.world as map -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find demo_package)/worlds/willowgarage.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn robot in gazbeo -->
+  <rosparam command="load" file="$(find joint_state_controller)/joint_state_controller.yaml" />
+  <node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller" />
+  <node name="panther_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model panther -y 6.0" />
+  <node name="state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+</launch>

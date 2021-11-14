@@ -15,8 +15,6 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - type: bind
-        source: ./../demo_package
-        target: /app/ros_ws/src/demo_package
-    ports:
-      - "8888:8888"
-    # command: roslaunch panther_gazebo panther_rviz.launch
+        source: ./../ros_ws
+        target: /app/demo_ros_ws/src
+    command: roslaunch demo_package demo_bringup.launch

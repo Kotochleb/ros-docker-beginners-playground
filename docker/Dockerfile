@@ -8,20 +8,27 @@ RUN apt update \
     && apt upgrade -y
 
 # Install Jupyter Notebook and Jupyter ROS
-RUN pip3 install --upgrade pip \
-    && pip3 install jupyterlab jupyros
+RUN pip3 install --upgrade pip
 
 # Copy demo_package
-COPY ./demo_package /app/ros_ws/src/demo_package
+COPY ./ros_ws /app/demo_ros_ws/src/
 
 # Install requirements
-RUN pip3 install -r /app/ros_ws/src/demo_package/requirements.txt
+RUN pip3 install -r /app/demo_ros_ws/src/requirements.txt
 
-# Build demo_package
-RUN cd ros_ws \
+# Build demo_ros_ws
+RUN cd demo_ros_ws \
+    && mkdir build \
+    && source /opt/ros/$ROS_DISTRO/setup.bash \
     && source /app/ros_ws/devel/setup.bash \
+    && rosdep update \
     && rosdep install --from-paths src --ignore-src -r -y \
     && catkin_make install
+
+# For education purpose add sourcing to .bashrc for autofill
+RUN echo "source \"/opt/ros/$ROS_DISTRO/setup.bash\"" >> ~/.bashrc \
+    && echo "source \"/app/ros_ws/devel/setup.bash\"" >> ~/.bashrc \
+    && echo "source \"/app/demo_ros_ws/devel/setup.bash\"" >> ~/.bashrc
 
 # Clear Ubuntu packages
 RUN apt clean \

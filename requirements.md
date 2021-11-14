@@ -79,6 +79,6 @@ Notice you no longer need `sudo` to run `docker` and `docker-compose` commands.
 ## Docker with Nvidia
 Installation of Nvidia Docker is not necessary and is described in [official guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) by Nvidia.
 
-## Final note
+# Final note
 
 That's it for the installation process. Rest will be "docker magic". Everything you need to install will come inside docker and just work.
