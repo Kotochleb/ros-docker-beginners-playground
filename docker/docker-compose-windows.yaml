@@ -6,7 +6,6 @@ services:
       context: ./..
       dockerfile: ./docker/Dockerfile
     container_name: ros-demo
-    runtime: nvidia
     environment:
       - "DISPLAY=host.docker.internal:0.0"
     volumes:
